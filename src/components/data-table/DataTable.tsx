@@ -345,9 +345,8 @@ export function DataTable() {
                 const isSelected = row.getIsSelected();
                 const isGrouped = row.getIsGrouped();
                 return (
-                  <>
+                  <FragmentWithKey key={row.id}>
                     <tr
-                      key={row.id}
                       data-index={vr.index}
                       ref={(el) => rowVirtualizer.measureElement(el)}
                       className={cn(
@@ -406,13 +405,13 @@ export function DataTable() {
                       })}
                     </tr>
                     {row.getIsExpanded() && !isGrouped && (
-                      <tr key={row.id + "-detail"}>
+                      <tr>
                         <td colSpan={row.getVisibleCells().length} className="bg-muted/10 p-0">
                           <DataTableRowDetail employee={row.original} />
                         </td>
                       </tr>
                     )}
-                  </>
+                  </FragmentWithKey>
                 );
               })}
               {paddingBottom > 0 && (
