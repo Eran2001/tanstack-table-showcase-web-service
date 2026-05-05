@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -345,7 +345,7 @@ export function DataTable() {
                 const isSelected = row.getIsSelected();
                 const isGrouped = row.getIsGrouped();
                 return (
-                  <FragmentWithKey key={row.id}>
+                  <Fragment key={row.id}>
                     <tr
                       data-index={vr.index}
                       ref={(el) => rowVirtualizer.measureElement(el)}
@@ -411,7 +411,7 @@ export function DataTable() {
                         </td>
                       </tr>
                     )}
-                  </FragmentWithKey>
+                  </Fragment>
                 );
               })}
               {paddingBottom > 0 && (
