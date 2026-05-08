@@ -71,7 +71,7 @@ export function DataTable() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
-  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 0, pageSize: 25 });
+  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 0, pageSize: 10 });
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnPinning, setColumnPinning] = useState<ColumnPinningState>({ left: ["select", "expander"], right: [] });
@@ -320,7 +320,7 @@ export function DataTable() {
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <div ref={tableContainerRef} className="relative max-h-[640px] overflow-auto">
-          <table style={{ width: table.getTotalSize() }} className="w-full text-sm">
+          <table style={{ minWidth: table.getTotalSize() }} className="w-full text-sm">
             <thead className="sticky top-0 z-10">
               {headerGroups.map((hg) => (
                 <SortableContext
@@ -371,7 +371,7 @@ export function DataTable() {
                               zIndex: pinned ? 5 : undefined,
                             }}
                             className={cn(
-                              "px-2 py-2 align-middle",
+                              "px-2 py-2 align-middle whitespace-nowrap",
                               pinned && "bg-card",
                               isSelected && pinned && "bg-primary/10"
                             )}
